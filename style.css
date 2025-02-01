@@ -25,6 +25,7 @@ body{
     align-items: center;
 }
 
+/*Células*/
 .cell{
     width: 100px;
     height: 100px;
@@ -32,7 +33,15 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
+
+
+.cell.x, 
+.cell.circle{
+    cursor: not-allowed;
+}
+
 
 .cell:nth-child(1),
 .cell:nth-child(2),
@@ -55,6 +64,41 @@ body{
     border-left: none;
 }
 
+/*X*/
+/*Se a jogada no momento for X, será aplicado um Hover sobre as células vazias*/
+/*PS: Será aplicado apenas nas celulas vazias, que não estão preenchidas com ambos os simbolos*/
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover:before,
+.board.x .cell:not(.x):not(.circle):hover::after{
+    content: "";
+    height: calc(100px * 0.15);
+    width: calc(100px * 0.9);
+    background: white;
+    position: absolute;
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover:before{
+    transform: rotate(45deg);
+}
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover:after{
+    transform: rotate(-45deg);
+}
+
+/*Circle*/
+.cell.circle::before,
+.cell.circle::after{
+    content: "";
+    height: calc(100px * 0.9);
+    width: calc(100px * 0.9);
+    background: white;
+    position: absolute;
+    border-radius: 50%;
+}
+
+/*Mensagem de vitória*/
 .winning-message{
     display: none;
 }
