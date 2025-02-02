@@ -36,6 +36,13 @@ body{
     position: relative;
 }
 
+/*Alterando a cor do Hover das células vazias*/
+.board.x .cell:not(.x):not(.circle):hover:before,
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover:before,
+.board.circle .cell:not(.x):not(.circle):hover:after{
+    background: rgba(255,255,255,0.3) !important;
+}
 
 .cell.x, 
 .cell.circle{
@@ -64,9 +71,8 @@ body{
     border-left: none;
 }
 
-/*X*/
+/* X */
 /*Se a jogada no momento for X, será aplicado um Hover sobre as células vazias*/
-/*PS: Será aplicado apenas nas celulas vazias, que não estão preenchidas com ambos os simbolos*/
 .cell.x::before,
 .cell.x::after,
 .board.x .cell:not(.x):not(.circle):hover:before,
@@ -87,9 +93,12 @@ body{
     transform: rotate(-45deg);
 }
 
-/*Circle*/
+/* Circle */
+/*Se a jogada no momento for o circulo, será aplicado um Hover sobre as células vazias*/
 .cell.circle::before,
-.cell.circle::after{
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover:before,
+.board.circle .cell:not(.x):not(.circle):hover:after{
     content: "";
     height: calc(100px * 0.9);
     width: calc(100px * 0.9);
@@ -100,5 +109,33 @@ body{
 
 /*Mensagem de vitória*/
 .winning-message{
-    display: none;
+    display: flex;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.winning-message-button{
+    font-size: 1.5rem;
+    padding: 10px 15px;
+    margin-top: 16px;cursor: pointer;
+    border-radius: 5px;
+    background-color: rgba(65,184,131,1);
+    color: white;
+}
+
+.winning-message-button:hover{
+    color: rgba(65,184,131,1); 
+    background-color: white;  
+}
+
+.winning-message-text{
+    font-size: 5rem;
+    color: white;
 }
