@@ -143,6 +143,8 @@ body {
   font-size: 5rem;
 }
 
+/*Exibir Mensagem de vitória ou Empate*/
 .show-winning-message {
   display: flex;
 }
+
