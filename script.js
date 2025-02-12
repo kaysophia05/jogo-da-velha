@@ -63,6 +63,12 @@ const checkForWin = (currentPlayer) =>{
     });
 };
 
+const checkForDraw = (draw) =>{
+    return [...cellElements].every(cell =>{
+        return cell.classList.contains("x") || cell.classList.contains("circle");
+    })
+}
+
 const placeMark = (cell, classToAdd) => {
     cell.classList.add(classToAdd);
 };
@@ -78,15 +84,19 @@ const handleClick = (e) =>{
     const cell = e.target;
     const classToAdd = isCircleTurn ? "circle" : "x";
     placeMark(cell,classToAdd);
+
     // Verificar vitória
     const isWin = checkForWin(classToAdd);
     // Verificar empate
+    const isDraw = checkForDraw(classToAdd);
     if(isWin){
         endGame(false);
-    } 
-    // Mudar o símbolo
-    swapTurn();
-    //--
+    } else if(isDraw){
+        endGame(true);
+    } else{
+        // Se não for um vitória e nem um empate, mudar o símbolo
+        swapTurn();
+    }
 }
 
 startgame();
